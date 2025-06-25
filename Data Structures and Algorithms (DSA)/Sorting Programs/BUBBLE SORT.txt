@@ -1,0 +1,138 @@
+💻🖥🖥1]METHOD 1
+
+#include <iostream>
+using namespace std;
+void display(int A[],int n)
+{
+  for(int i=0;i<n;i++)
+  {
+    cout<<A[i]<<"\t";
+  }
+}
+void bubblesort(int A[],int n)
+{
+ int temp;
+ for(int i=0;i<n-1;i++) //for number of pass
+ {
+   for(int j=0;j<n-1-i;j++) //for comparison in each pass
+   {
+     if(A[j]>A[j+1])
+     {
+      temp=A[j];
+      A[j]=A[j+1];
+      A[j+1]=temp;
+     }
+   }
+ }
+}
+int main()
+{
+ int A[]={5,1,3,2,4};
+ int n=5;
+ cout<<"INPUT LIST IS: \n";
+ display(A,n);
+ cout<<"\n";
+
+ bubblesort(A,n);
+ cout<<"SORTED LIST IS: \n";
+ display(A,n);
+ return(0);
+}
+
+
+
+
+💻🖥🖥2]METHOD 2
+#include <iostream>
+using namespace std;
+void display(int* A,int n) //this * means generic pointer declaration . Now here we can store address of any data type in A , e.g.array,etc
+{
+  for(int i=0;i<n;i++)
+  {
+    cout<<A[i]<<"\t";
+  }
+}
+void bubblesort(int* A,int n)
+{
+ int temp;
+ for(int i=0;i<n-1;i++) //for number of pass
+ {
+   for(int j=0;j<n-1-i;j++) //for comparison in each pass
+   {
+     if(A[j]>A[j+1])
+     {
+      temp=A[j];
+      A[j]=A[j+1];
+      A[j+1]=temp;
+     }
+   }
+ }
+}
+int main()
+{
+ int A[]={5,1,3,2,4};
+ int n=5;
+ cout<<"INPUT LIST IS: \n";
+ display(A,n);
+ cout<<"\n";
+
+ bubblesort(A,n);
+ cout<<"SORTED LIST IS: \n";
+ display(A,n);
+ return(0);
+}
+
+
+
+
+💻🖥🖥3]METHOD 3
+
+#include <iostream>
+using namespace std;
+void accept(int A[],int n)
+{
+  cout<<"ENTER LIST OF ELEMENTS: ";
+  for(int i=0;i<n;i++)
+  {
+    cin>>A[i];
+  }
+}
+void display(int A[],int n)
+{
+  for(int i=0;i<n;i++)
+  {
+    cout<<A[i]<<"\t";
+  }
+}
+void bubblesort(int A[],int n)
+{
+ int temp;
+ for(int i=0;i<n-1;i++) //for number of pass
+ {
+   for(int j=0;j<n-1-i;j++) //for comparison in each pass
+   {
+     if(A[j]>A[j+1])
+     {
+      temp=A[j];
+      A[j]=A[j+1];
+      A[j+1]=temp;
+     }
+   }
+ }
+}
+int main()
+{
+ int A[20];int n;
+ cout<<"ENTER NO. OF ELEMENTS TO BE DISPLAYED: ";
+ cin>>n;
+ accept(A,n);
+
+ cout<<"ELEMENTS IN THE LIST ARE: \n";
+ display(A,n);
+ cout<<"\n";
+
+ bubblesort(A,n);
+ cout<<"SORTED LIST IS: \n";
+ display(A,n);
+ return(0);
+}
