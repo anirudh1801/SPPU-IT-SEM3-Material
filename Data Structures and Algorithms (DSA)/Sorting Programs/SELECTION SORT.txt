@@ -1,0 +1,172 @@
+💻🖥🖥1]METHOD 1
+
+#include <iostream>
+using namespace std;
+void display(int A[],int n)
+{
+  for(int i=0;i<n;i++)
+  {
+    cout<<A[i]<<"\t";
+  }
+}
+void selectionsort(int A[],int n)
+{
+ int indexofminimum,temp;
+ for(int i=0;i<n-1;i++) //for number of pass
+ { 
+   indexofminimum=i;
+   for(int j=i+1;j<n;j++) 
+   {
+     if(A[j]<A[indexofminimum])
+     {
+      indexofminimum=j;
+     }     
+   }
+   //swap A[i] and A[indexofminimum]
+      temp=A[i];
+      A[i]=A[indexofminimum];
+      A[indexofminimum]=temp;
+ }
+}
+int main()
+{
+ int A[]={3,5,2,13,12};
+ int n=5;
+ cout<<"INPUT LIST IS: \n";
+ display(A,n);
+ cout<<"\n";
+
+ selectionsort(A,n);
+ cout<<"SORTED LIST IS: \n";
+ display(A,n);
+ return(0);
+}
+  
+
+💎💎💎EXAMPLE WITH WORKING:
+/*   0    1    2    3    4        <-- INDEX
+   | 3    5    2   13   12   	  <-- ARRAY  (INPUT ARRAY)
+
+     3 |  5    2   13   12        <-- (INITIALLY FIRST ELEMENT IS CONSIDERED AS MINIMUM.NOW,
+                                        COMPARING FIRST ELEMENT WITH ENTIRE LIST AND IF SMALLER ELEMENT THAN IT IS FOUND THEN THEY ARE SWAPPED)
+
+     2 |  5    3   13   12	  <-- AFTER FIRST PASS
+
+     2    5  | 3   13   12	  <-- READY FOR SECOND PASS
+     2    3  | 5   13   12	  <-- AFTER SECOND PASS
+
+     2    3    5 | 13   12	  <-- READY FOR THIRD PASS 
+     2    3    5 | 13   12	  <-- AFTER THIRD PASS PASS
+
+     2    3    5   13 | 12	  <-- READY FOR FOURTH PASS
+     2    3    5   12 | 13	  <-- AFTER FOURTH PASS 
+
+     THEREFORE , SORTED ARRAY ==> 2 3 5 12 13
+
+     
+
+          
+
+
+
+💻🖥🖥2]METHOD 2
+
+#include <iostream>
+using namespace std;
+void display(int* A,int n) //this * means generic pointer declaration . Now here we can store address of any data type in A , e.g.array,etc
+{
+  for(int i=0;i<n;i++)
+  {
+    cout<<A[i]<<"\t";
+  }
+}
+void selectionsort(int* A,int n)
+{
+ int indexofminimum,temp;
+ for(int i=0;i<n-1;i++) //for number of pass
+ { 
+   indexofminimum=i;
+   for(int j=i+1;j<n;j++) 
+   {
+     if(A[j]<A[indexofminimum])
+     {
+      indexofminimum=j;
+     }     
+   }
+   //swap A[i] and A[indexofminimum]
+      temp=A[i];
+      A[i]=A[indexofminimum];
+      A[indexofminimum]=temp;
+ }
+}
+int main()
+{
+ int A[]={3,5,2,13,12};
+ int n=5;
+ cout<<"INPUT LIST IS: \n";
+ display(A,n);
+ cout<<"\n";
+
+ selectionsort(A,n);
+ cout<<"SORTED LIST IS: \n";
+ display(A,n);
+ return(0);
+}
+
+
+
+
+💻🖥🖥3]METHOD 3
+
+#include <iostream>
+using namespace std;
+void accept(int A[],int n)
+{
+  cout<<"ENTER LIST OF ELEMENTS: ";
+  for(int i=0;i<n;i++)
+  {
+    cin>>A[i];
+  }
+}
+void display(int A[],int n)
+{
+  for(int i=0;i<n;i++)
+  {
+    cout<<A[i]<<"\t";
+  }
+}
+void selectionsort(int* A,int n)
+{
+ int indexofminimum,temp;
+ for(int i=0;i<n-1;i++) //for number of pass
+ { 
+   indexofminimum=i;
+   for(int j=i+1;j<n;j++) 
+   {
+     if(A[j]<A[indexofminimum])
+     {
+      indexofminimum=j;
+     }     
+   }
+   //swap A[i] and A[indexofminimum]
+      temp=A[i];
+      A[i]=A[indexofminimum];
+      A[indexofminimum]=temp;
+ }
+}
+int main()
+{
+ int A[20];int n;
+ cout<<"ENTER NO. OF ELEMENTS TO BE DISPLAYED: ";
+ cin>>n;
+ accept(A,n);
+
+ cout<<"ELEMENTS IN THE LIST ARE: \n";
+ display(A,n);
+ cout<<"\n";
+
+ selectionsort(A,n);
+ cout<<"SORTED LIST IS: \n";
+ display(A,n);
+ return(0);
+}
