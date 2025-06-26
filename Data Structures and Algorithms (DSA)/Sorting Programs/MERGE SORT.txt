@@ -1,0 +1,149 @@
+//🖥MERGE SORT
+#include <iostream>
+using namespace std;
+void display(int A[],int n)
+{
+for(int i=0;i<n;i++)
+{
+cout<<A[i]<<"\t";
+}
+}
+void merge(int A[],int low,int mid,int high)
+{
+int i,j,k;int B[100];
+i=low;
+j=mid+1;
+k=low;
+while(i<=mid&&j<=high)
+{
+if(A[i]<A[j])
+{
+B[k]=A[i];
+i++;k++;
+}
+else
+{
+B[k]=A[j];
+j++;k++;
+}
+}
+while(i<=mid)
+{
+B[k]=A[i];
+i++;k++;
+}
+while(j<=high)
+{
+B[k]=A[j];
+j++;k++;
+}
+for(int i=low;i<=high;i++)
+{
+A[i]=B[i];
+}
+}
+void mergesort(int A[],int low,int high)
+{
+if(low<high)
+{
+int mid;
+mid=(low+high)/2;
+mergesort(A,low,mid);
+mergesort(A,mid+1,high);
+merge(A,low,mid,high);
+}
+}
+int main()
+{
+int A[]={3,5,2,13,12};
+int n=5;
+cout<<"ELEMENTS IN THE LIST ARE: \n";
+display(A,n);
+cout<<"\n";
+mergesort(A,0,4);
+cout<<"SORTED LIST IS: \n";
+display(A,n);
+return(0);
+}
+
+
+
+
+
+//🖥MERGE SORT BY ACCEPTING INPUT
+#include <iostream>
+using namespace std;
+void accept(int A[],int n)
+{
+cout<<"ENTER LIST OF ELEMENTS: \n";
+for(int i=0;i<n;i++)
+{
+cin>>A[i];
+}
+}
+void display(int A[],int n)
+{
+for(int i=0;i<n;i++)
+{
+cout<<A[i]<<"\t";
+}
+}
+void merge(int A[],int low,int mid,int high)
+{
+int i,j,k;int B[100];
+i=low;
+j=mid+1;
+k=low;
+while(i<=mid&&j<=high)
+{
+if(A[i]<A[j])
+{
+B[k]=A[i];
+i++;k++;
+}
+else
+{
+B[k]=A[j];
+j++;k++;
+}
+}
+while(i<=mid)
+{
+B[k]=A[i];
+i++;k++;
+}
+while(j<=high)
+{
+B[k]=A[j];
+j++;k++;
+}
+for(int i=low;i<=high;i++)
+{
+A[i]=B[i];
+}
+}
+void mergesort(int A[],int low,int high)
+{
+if(low<high)
+{
+int mid;
+mid=(low+high)/2;
+mergesort(A,low,mid);
+mergesort(A,mid+1,high);
+merge(A,low,mid,high);
+}
+}
+int main()
+{
+int A[20];int n;
+cout<<"ENTER NO.OF ELEMENTS TO.BE DISPLAYED: \n";
+cin>>n;
+accept(A,n);
+cout<<"ELEMENTS IN THE LIST ARE: \n";
+display(A,n);
+cout<<"\n";
+mergesort(A,0,4);
+cout<<"SORTED LIST IS: \n";
+display(A,n);
+return(0);
+}
