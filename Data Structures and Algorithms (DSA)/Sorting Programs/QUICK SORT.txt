@@ -1,0 +1,136 @@
+//🖥QUICK SORT
+#include <iostream>
+using namespace std;
+void display(int A[],int n)
+{
+for(int i=0;i<n;i++)
+{
+cout<<A[i]<<"\t";
+}
+}
+int partition(int A[],int low,int high)
+{
+int pivot=A[low];
+int i=low+1;
+int j=high;
+int temp;
+do
+{
+while(A[i]<=pivot)
+{
+i++;
+}
+while(A[j]>pivot)
+{
+j--;
+}
+if(i<j)
+{
+temp=A[i];
+A[i]=A[j];
+A[j]=temp;
+}
+} while(i<j);
+//swap A[low] and A[j]
+temp=A[low];
+A[low]=A[j];
+A[j]=temp;
+return(j);
+}
+void quicksort(int A[],int low,int high)
+{
+int partitionIndex; //index of pivot after partition
+if(low<high)
+{
+partitionIndex=partition(A,low,high);
+quicksort(A,low,partitionIndex-1); //sort left subarray
+quicksort(A,partitionIndex+1,high); //sort right subarray
+}
+}
+int main()
+{
+int A[]={3,5,2,13,12};
+int n=5;
+cout<<"ELEMENTS IN THE LIST ARE: \n";
+display(A,n);
+cout<<"\n";
+quicksort(A,0,n-1);
+cout<<"SORTED LIST IS: \n";
+display(A,n);
+return(0);
+}
+
+
+
+
+//🖥QUICK SORT BY TAKING INPUT
+#include <iostream>
+using namespace std;
+void accept(int A[],int n)
+{
+cout<<"ENTER LIST OF ELEMENTS: \n";
+for(int i=0;i<n;i++)
+{
+cin>>A[i];
+}
+}
+void display(int A[],int n)
+{
+for(int i=0;i<n;i++)
+{
+cout<<A[i]<<"\t";
+}
+}
+int partition(int A[],int low,int high)
+{
+int pivot=A[low];
+int i=low+1;
+int j=high;
+int temp;
+do
+{
+while(A[i]<=pivot)
+{
+i++;
+}
+while(A[j]>pivot)
+{
+j--;
+}
+if(i<j)
+{
+temp=A[i];
+A[i]=A[j];
+A[j]=temp;
+}
+} while(i<j);
+//swap A[low] and A[j]
+temp=A[low];
+A[low]=A[j];
+A[j]=temp;
+return(j);
+}
+void quicksort(int A[],int low,int high)
+{
+int partitionIndex; //index of pivot after partition
+if(low<high)
+{
+partitionIndex=partition(A,low,high);
+quicksort(A,low,partitionIndex-1); //sort left subarray
+quicksort(A,partitionIndex+1,high); //sort right subarray
+}
+}
+int main()
+{
+int A[20];int n;
+cout<<"ENTER NO. OF ELEMENTS TO BE DISPLAYED: ";
+cin>>n;
+accept(A,n);
+cout<<"ELEMENTS IN THE LIST ARE: \n";
+display(A,n);
+cout<<"\n";
+quicksort(A,0,n-1);
+cout<<"SORTED LIST IS: \n";
+display(A,n);
+return(0);
+}
