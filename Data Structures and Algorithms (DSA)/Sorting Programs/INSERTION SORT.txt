@@ -1,0 +1,134 @@
+//🖥INSERTION SORT
+
+//🖥 METHOD 1 :INSERTION SORTING FOR GIVEN SET OF ELEMENTS
+
+
+#include <iostream>
+using namespace std;
+void display(int A[],int n)
+{
+ for(int i=0;i<n;i++)
+ {
+ cout<<A[i]<<"\t";
+ }
+}
+void insertionSort(int A[],int n)
+{
+ int k,j;
+ for(int i=1;i<n;i++) //loop for passes
+ {
+ k=A[i];
+ j=i-1;
+ 
+ while(j>=0 && A[j]>k) //loop for each pass
+ {
+ A[j+1]=A[j];
+ j--;
+ }
+ A[j+1]=k;
+ }
+}
+int main()
+{
+int A[]={5,1,3,2,4};
+int n=5;
+cout<<"INPUT LIST IS: \n";
+display(A,n);
+cout<<"\n";
+insertionSort(A,n);
+cout<<"SORTED LIST IS: \n";
+display(A,n);
+return(0);
+}
+
+
+💎💎💎EXAMPLE WITH WORKING:
+/* -1    0    1    2    3    4   5        <-- INDEX
+        12   54   65   07   23   09	  <-- ARRAY  (first element in array is always sorted , so lets begin by considering second element)
+
+        12 | 54   65   07   23   09       <-- i=1(beacuase element considered for sorting is 54 which is at position 1),
+                                              j=0(because j=i-1)
+                                              k=54(i.e.element considered for sorting)
+        12   54 | 65   07   23   09       <-- FIRST PASS DONE
+
+        
+        12   54 | 65   07   23   09       <-- i=2(beacuase element considered for sorting is 65 which is at position 2),
+                                              j=1(because j=i-1)
+                                              k=65(i.e.element considered for sorting)
+        12   54   65 | 07   23   09       <-- SECOND PASS DONE
+
+    
+        12   54   65 |  07   23   09       <-- i=3,j=2,k=07
+        12   54   65 | *65*  23   09       <-- i=3,j=1,k=07
+        12   54  *54*|  65   23   09       <-- i=3,j=0,k=07
+        12  *12*  54 |  65   23   09       <-- i=3,j=-1,k=07
+        07   12   54    65 | 23   09       <-- i=3,j=-1,k=07  <-- THIRD PASS DONE
+
+
+        07   12   54    65 | 23   09       <-- i=4,j=3,k=23
+        07   12   54    65 |*65*  09       <-- i=4,j=2,k=23
+        07   12   54   *54*| 65   09       <-- i=4,j=1,k=23
+	07   12  *23*   54 | 65   09       <-- i=4,j=0,k=23
+	07   12   23    54   65 | 09       <-- i=4,j=-1,k=23  <-- FOURTH PASS DONE
+
+
+       
+        07   12   23    54   65 | 09       <-- i=5,j=4,k=09
+	07   12   23    54   65 |*65*      <-- i=5,j=3,k=09
+	07   12   23    54  *54*| 65       <-- i=5,j=2,k=09
+	07   12   23   *23*  54 | 65       <-- i=5,j=1,k=09
+        07   12  *12*   23   54 | 65       <-- i=5,j=0,k=09
+        07  *09*  12    23   54 | 65       <-- i=5,j=-1,k=09
+        07   09   12    23   54   65 |     <-- i=5,j=-1,k=09  <-- FIFTH PASS DONE */
+
+
+        
+
+//🖥 METHOD 2 :INSERTION SORT BY ACCEPTING INPUT FROM USER
+
+#include <iostream>
+using namespace std;
+void accept(int A[],int n)
+{
+cout<<"ENTER LIST OF ELEMENTS:";
+for(int i=0;i<n;i++)
+ {
+ cin>>A[i];
+ }
+}
+void display(int A[],int n)
+{ 
+ for(int i=0;i<n;i++)
+ {
+ cout<<A[i]<<"\t";
+ }
+}
+void insertionSort(int A[],int n)
+{
+int k,j;
+for(int i=1;i<n;i++) //loop for passes
+{
+ k=A[i];
+ j=i-1;
+ while(j>=0 && A[j]>k) //loop for each pass
+ {
+ A[j+1]=A[j];
+ j--;
+ }
+ A[j+1]=k;
+}
+}
+int main()
+{
+int A[20];int n;
+cout<<"ENTER NO.OF ELEMENTS TO BE DISPLAYED :";
+cin>>n;
+accept(A,n);
+cout<<"ELEMENTS IN THE LIST ARE: \n";
+display(A,n);cout<<"\n";
+insertionSort(A,n);
+cout<<"SORTED LIST IS: \n";
+display(A,n);
+return(0);
+}
+
