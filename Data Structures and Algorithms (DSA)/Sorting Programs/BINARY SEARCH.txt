@@ -1,0 +1,133 @@
+//💻💻💻💻💻BINARY SEARCH
+
+//1]METHOD 1:SEARCHING ELEMENT IN ALREADY SORTED LIST
+#include <iostream>
+using namespace std;
+void display(int A[],int n)
+{
+for(int i=0;i<n;i++)
+{
+cout<<A[i]<<"\t";
+}
+}
+int Bsearch(int A[],int n,int no) //'n' means size of array and 'no' means element to be searched
+{
+int low,mid,high;
+low=0;high=n-1; //0th index element is 'low' and last element is 'high'
+while(low<=high)
+{
+mid=(low+high)/2;
+if(no==A[mid])
+{
+return(mid); //if element is found at mid position then returns its index
+}
+else if(no>A[mid]) //if element is greater than mid then shift 'low' to 'mid+1'
+{
+low=mid+1;
+}
+else
+{
+high=mid-1; //if element is lower than mid then shift 'high' to 'mid-1'
+}
+}
+return(-1);
+}
+int main()
+{
+int A[]={1,4,8,15,24,33,52,66,200,488,666};
+int n=11;
+int no=66;
+cout<<"LIST OF ELEMENTS IS: \n";
+display(A,n);
+int ans=Bsearch(A,n,no);
+cout<<"\n";
+cout<<no<<"FOUND AT INDEX"<<ans<<"\n";
+cout<<no<<"FOUND AT POSITION"<<ans+1<<"\n";
+return(0);
+}
+
+
+
+
+//2]METHOD 2:TAKING UNSORTED LIST AS INPUT , THEN SORTINNG IT AND THEN SEARCHING FOR GIVEN NUMBER
+#include <iostream>
+using namespace std;
+void accept(int A[],int n)
+{
+cout<<"ENTER LIST OF ELEMENTS:";
+for(int i=0;i<n;i++)
+{
+cin>>A[i];
+}
+}
+void display(int A[],int n)
+{
+for(int i=0;i<n;i++)
+{
+cout<<A[i]<<"\t";
+}
+}
+void Bsort(int A[],int n) //to sort unsorted array first
+{int temp;
+for(int i=0;i<(n-1);i++)
+{
+for(int j=0;j<(n-1-i);j++)
+{
+if(A[j]>A[j+1])
+{
+temp=A[j];
+A[j]=A[j+1];
+A[j+1]=temp;
+}
+}
+}
+}
+int Bsearch(int A[],int n,int no)
+{
+int low,mid,high;
+low=0;high=n-1; //0th index element is 'low' and last element is 'high'
+while(low<=high)
+{
+mid=(low+high)/2;
+if(no==A[mid])
+{
+return(mid); //if element is found at mid position then returns its index
+}
+else if(no>A[mid]) //if element is greater than mid then shifts 'low' to 'mid+1'
+{
+low=mid+1;
+}
+else
+{
+high=mid-1; //if element is lower than mid then shifts 'high' to 'mid-1'
+}
+}
+return(-1);
+}
+int main()
+{
+int A[5],n,no,ans;
+cout<<"HOW MANY ELEMENTS:";
+cin>>n;
+accept(A,n);
+cout<<"LIST OF ELEMENTS IS: \n";
+display(A,n);
+cout<<"\n";
+Bsort(A,n);
+cout<<"SORTED LIST OF ELEMENTS IS: \n";
+display(A,n);
+cout<<"\n";
+cout<<"ENTER ELEMENT TO BE SEARCHED: ";
+cin>>no;
+ans=Bsearch(A,n,no);
+if(ans==-1)
+{
+cout<<"ELEMENT NOT FOUND";
+}
+else
+{
+cout<<no<<"FOUND AT INDEX"<<ans<<"\n";
+cout<<no<<"FOUND AT POSITION"<<ans+1<<"\n";
+}
+return(0);
+}

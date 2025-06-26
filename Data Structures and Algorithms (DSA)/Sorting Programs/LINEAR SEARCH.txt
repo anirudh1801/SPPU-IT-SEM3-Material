@@ -1,0 +1,72 @@
+//💻💻💻💻LINEAR SEARCH
+//1]METHOD 1 : SEARCHING ELEMENT IN GIVEN LIST
+#include <iostream>
+using namespace std;
+int Lsearch(int A[],int n,int no) //'n' means size of array and 'no' means element to be searched
+{
+ for(int i=0;i<n;i++)
+ {
+ if(A[i]==no)
+ {
+ return(i); //returns index if element is found
+ }
+ 
+ }
+ return(-1); //otherwise returns -1
+}
+int main()
+{
+ int A[]={6,0,2,5,8,3};
+ int n=6; //size of array
+ int no=2; //element to be searched
+ int ans=Lsearch(A,n,no);
+ cout<<no<<"FOUND AT INDEX"<<ans<<"\n";
+ cout<<no<<"FOUND AT POSITION"<<ans+1<<"\n";
+ return(0);
+}
+
+
+
+
+//2]METHOD 2 : SEARCHING ELEMENT BY ACCEPTING LIST
+#include <iostream>
+using namespace std;
+void accept(int A[],int n)
+{
+ cout<<"ENTER LIST OF ELEMENTS:";
+ for(int i=0;i<n;i++)
+ {
+ cin>>A[i];
+ }
+}
+int Lsearch(int A[],int n,int no)
+{
+ for(int i=0;i<n;i++)
+ {
+ if(A[i]==no)
+ {
+ return(i);
+ }
+ 
+ }
+ return(-1);
+}
+int main()
+{
+ int A[5],n,no,ans;
+ cout<<"HOW MANY ELEMENTS: ";
+ cin>>n;
+ accept(A,n);
+ cout<<"ENTER ELEMENT TO BE SEARCHED: ";
+ cin>>no;
+ ans=Lsearch(A,n,no);
+ if(ans==-1)
+ {
+ cout<<"ELEMENT NOT FOUND";
+ }
+ else
+ {
+ cout<<no<<"FOUND AT INDEX"<<ans<<"\n";
+ cout<<no<<"FOUND AT POSITION"<<ans+1<<"\n";
+ }
+}
