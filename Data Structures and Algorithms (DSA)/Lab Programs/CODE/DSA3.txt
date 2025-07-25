@@ -1,0 +1,271 @@
+//ASSIGNMENT 3 : CIRCULAR QUEUE
+/*Implement Circular Queue using Array. Perform following operations on it.
+a) Insertion (Enqueue)
+b) Deletion (Dequeue)
+c) Display
+(Note: Handle queue full condition by considering a fixed size of a queue.)*/
+
+#include <iostream>
+using namespace std;
+
+#define SIZE 20
+
+class QUEUE {
+private:
+    int Que[SIZE];
+    int front;
+    int rear;
+
+public:
+    QUEUE(void) {
+        front = rear = -1; // Initialize front and rear to -1
+    }
+
+    void addq(int item) {
+        if ((front == 0 && rear == SIZE - 1) || (rear == (front - 1) % (SIZE - 1))) {
+            cout << "Queue is full." << endl;
+            return;
+        } else if (front == -1) {
+            front = rear = 0;
+            Que[rear] = item;
+        } else {
+            rear = (rear + 1) % SIZE;
+            Que[rear] = item;
+        }
+    }
+
+    int delq(void) {
+        if (front == -1) {
+            cout << "Queue is empty." << endl;
+            return -1;
+        }
+        int item = Que[front];
+        if (front == rear) {
+            front = rear = -1;
+        } else {
+            front = (front + 1) % SIZE;
+        }
+        return item;
+    }
+
+    int qempty(void) {
+        return (front == -1) ? 1 : 0;
+    }
+
+    int qfull(void) {
+        return ((rear + 1) % SIZE == front) ? 1 : 0;
+    }
+
+    int frontele(void) {
+        if (front == -1) {
+            cout << "Queue is empty." << endl;
+            return -1;
+        }
+        return Que[front];
+    }
+
+    int rearele(void) {
+        if (front == -1) {
+            cout << "Queue is empty." << endl;
+            return -1;
+        }
+        return Que[rear];
+    }
+
+    void displayQ(void) {
+        if (front == -1) {
+            cout << "Queue is empty." << endl;
+            return;
+        }
+        int i = front;
+        do {
+            cout << Que[i] << " ";
+            i = (i + 1) % SIZE;
+        } while (i != (rear + 1) % SIZE);
+        cout << endl;
+    }
+};
+
+int main() {
+    QUEUE Q;
+    int ch, item, ans;
+    int r; // Declare r outside the switch statement
+    do {
+        cout << "1. Add element:" << endl;
+        cout << "2. Delete element:" << endl;
+        cout << "3. Display element:" << endl;
+        cout << "4. Display Front element:" << endl;
+        cout << "5. Display Rear element:" << endl;
+        cout << "6. Exit:" << endl;
+        cout << "Enter your choice:" << endl;
+        cin >> ch;
+        switch (ch) {
+            case 1:
+                r = Q.qfull();
+                if (r == 0) {
+                    cout << "Enter the number to insert in the queue:" << endl;
+                    cin >> item;
+                    Q.addq(item);
+                } else {
+                    cout << "Queue is full." << endl;
+                }
+                break;
+            case 2:
+                r = Q.qempty();
+                if (r == 0) {
+                    ans = Q.delq();
+                    cout << "Deleted element is: " << ans << endl;
+                } else {
+                    cout << "Queue is empty." << endl;
+                }
+                break;
+            case 3:
+                r = Q.qempty();
+                if (r == 0) {
+                    Q.displayQ();
+                } else {
+                    cout << "Queue is empty." << endl;
+                }
+                break;
+            case 4:
+                r = Q.qempty();
+                if (r == 0) {
+                    ans = Q.frontele();
+                    cout << "Front element is: " << ans << endl;
+                } else {
+                    cout << "Queue is empty." << endl;
+                }
+                break;
+            case 5:
+                r = Q.qempty();
+                if (r == 0) {
+                    ans = Q.rearele();
+                    cout << "Rear element is: " << ans << endl;
+                } else {
+                    cout << "Queue is empty." << endl;
+                }
+                break;
+            case 6:
+                cout << "Thank you!!!!!!!" << endl;
+                break;
+        }
+    } while (ch != 6);
+
+    return 0;
+}
+
+
+/*OUTPUT:
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+1
+Enter the number to insert in the queue:
+6
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+1
+Enter the number to insert in the queue:
+22
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+1
+Enter the number to insert in the queue:
+2
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+1
+Enter the number to insert in the queue:
+55
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+1
+Enter the number to insert in the queue:
+96
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+3
+6 22 2 55 96 
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+2
+Deleted element is: 6
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+2
+Deleted element is: 22
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+3
+2 55 96 
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+4
+Front element is: 2
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+5
+Rear element is: 96
+1. Add element:
+2. Delete element:
+3. Display element:
+4. Display Front element:
+5. Display Rear element:
+6. Exit:
+Enter your choice:
+6
+Thank you!!!!!!!*/

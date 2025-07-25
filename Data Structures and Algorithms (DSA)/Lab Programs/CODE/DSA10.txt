@@ -1,0 +1,171 @@
+//ASSIGNMENT 10 : FILE HANDLING 
+/*Department maintains student’s database. The file contains roll number, name, division and address. 
+Write a program to create a sequential file to store and maintain student data. It should allow the 
+user to add, delete information of student. Display information of particular student. If record of 
+student does not exist an appropriate message is displayed. If student record is found it should 
+display the student details.*/
+
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+ofstream MyWriteFile("Ritesh.txt");
+class FileHandling{
+ string roll_no,name,division,address;
+ public:
+ void Insert_Data(void);
+ void Display_Data(void);
+ void Update_Data(void);
+};
+void FileHandling::Insert_Data(void){
+
+ cout<<"Enter Roll no.: ";
+ cin>>roll_no;
+ cout<<"Enter Name: ";
+ cin>>name;
+ cout<<"Enter Division: ";
+ cin>>division;
+ cout<<"Enter address ";
+ cin>>address;
+ MyWriteFile<<roll_no<<endl<<name<<endl<<division<<endl<<address<<endl;
+
+}
+void FileHandling::Display_Data(void){
+ string myText;
+ int b=0;
+ ifstream MyReadFile("Ritesh.txt");
+ cout<<"\nRollno \t\t Name \t\tDiv \t\tAddress\n";
+ while (getline (MyReadFile, myText)) {
+ cout << myText<<"\t\t";
+ b++;
+ if(b==4 || b==8 || b==12){
+ cout<<endl;
+ }
+ }
+ cout<<endl;
+ MyReadFile.close();
+}
+void FileHandling::Update_Data(void){
+ string u_name,u_Div,u_Add,myText;
+ cout<<"Enter Roll No. for update:";
+ cin>>roll_no;
+ cout<<"Enter Updated Name:";
+ cin>>u_name;
+ ifstream Original_File("Ritesh.txt");
+ ofstream temp("temp.txt");
+ string a;
+ while(getline(Original_File,a)){
+ if(a==roll_no){
+ temp<<a<<endl;
+ getline(Original_File,a);
+ temp<<u_name<<endl;
+ }
+ else{
+ temp<<a<<endl;
+ }
+ }
+ Original_File.close();
+ temp.close();
+ remove("Ritesh.txt");
+ /* Deletes the file if exists */
+ if (rename("temp.txt", "Ritesh.txt") != 0){
+ perror("Error renaming file");}
+
+ cout<<"***********************Data Updated*******************";
+}
+int main () {
+ int ch;
+ bool a=true;
+ FileHandling fh;
+ while(a){
+ cout<<"***********File Handling Program****************";
+ cout<<"\n Menu: \n 1. Insert Student Data \n 2. Display Student Data \n 3. Update Student Data\n";
+ cout<<"\nEnter Choice: ";
+ cin>>ch;
+ switch (ch)
+ {
+ case 1:
+ fh.Insert_Data();
+ break;
+
+ case 2:
+ fh.Display_Data();
+ break;
+ case 3:
+ MyWriteFile.close();
+ fh.Update_Data();
+ break;
+ default:
+ cout<<"******Enter Valid Choice************";
+ break;
+ }
+ cout<<"\nDo You want to perform more operations?(1/0)\n";
+ cin>>a;
+ }
+ return 0;
+}
+
+
+/*OUTPUT:
+***********File Handling Program****************
+ Menu: 
+ 1. Insert Student Data 
+ 2. Display Student Data 
+ 3. Update Student Data
+
+Enter Choice: 1
+Enter Roll no.: 55
+Enter Name: ABC
+Enter Division: A
+Enter address AAAA
+Do You want to perform more operations?(1/0)
+1
+***********File Handling Program****************
+ Menu: 
+ 1. Insert Student Data 
+ 2. Display Student Data 
+ 3. Update Student Data
+
+Enter Choice: 1
+Enter Roll no.: 21
+Enter Name: PQR
+Enter Division: B
+Enter address PPPP
+Do You want to perform more operations?(1/0)
+1
+***********File Handling Program****************
+ Menu: 
+ 1. Insert Student Data 
+ 2. Display Student Data 
+ 3. Update Student Data
+
+Enter Choice: 2
+Rollno 		 Name 		Div 		Address
+55		ABC		A		AAAA		
+21		PQR		B		PPPP	
+
+Do You want to perform more operations?(1/0)
+1
+***********File Handlinf Program****************
+Menu:
+1. Insert Student Data
+2. Display Student Data
+3. Update Student Data
+Enter Choice: 3
+Enter Roll No. for update:55
+Enter Updated Name:MNO
+***********************Data Updated*******************
+Do You want to perform more operations?(1/0)
+1
+***********File Handlinf Program****************
+Menu:
+1. Insert Student Data
+2. Display Student Data
+3. Update Student Data
+Enter Choice: 2
+Rollno 		 Name 		Div 		Address
+55		MNO		A		AAAA		
+21		PQR		B		PPPP
+Do You want to perform more operations?(1/0)
+0
+*/
